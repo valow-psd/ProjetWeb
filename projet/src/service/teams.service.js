@@ -25,10 +25,11 @@ async function getAllTeams() {
     return result
  }
 
-async function addTeam() {
+
+ async function addHeroes() {
     let result = {error: 0, status: 200, data: null}
-    let TeamsToAdd = { idTeam: "id_team"}
-    let response = await axios.patch('/orgs/addteam', TeamsToAdd , {headers : "teams's secret here" } )
+    let heroesToAdd = { idHeroes: [ "id_toto", "id_tata"], idTeam: "id_team"}
+    let response = await axios.patch('/teams/addheroes', heroesToAdd )
     if (response.error != 0) {
        result.error=1 
        result.data=response.error
@@ -36,13 +37,14 @@ async function addTeam() {
     return result
  }
  
- async function removeTeam() {
+ async function removeHeroes() {
     let result = {error: 0, status: 200, data: null}
-    let TeamsToRemove = { idTeam: "id_team"}
-    let response = await axios.patch('/orgs/removeteam', TeamsToRemove , {headers : "teams's secret here" })
+    let heroesToRemove = { idHeroes: [ "id_toto", "id_tata"], idTeam: "id_team"}
+    let response = await axios.patch('/teams/removeheroes', heroesToRemove )
     if (response.error != 0) {
        result.error=1 
        result.data=response.error
     }
     return result
  }
+ 
