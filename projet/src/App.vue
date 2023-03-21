@@ -1,55 +1,37 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+  <v-container>
+    <v-btn  @click=" menuouvert = !menuouvert"></v-btn>
+    <v-app-bar>
+    <v-app-bar-title>
+      Super Heroes
+    </v-app-bar-title>
     </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+    <v-navigation-drawer floating temporary v-model="menuouvert">
+      <v-list-item>
+        <v-list-item-content>
+          <v-btn v-if="menuouvert" to="Organisation" @click="$router.push('/Organisation')"> Organisation </v-btn>
+          <v-btn v-if="menuouvert" to="Teams" @click="$router.push('/Teams')"> Teams  </v-btn>
+          <v-btn v-if="menuouvert" to="Heroes" @click="$router.push('/Hereos')"> Hereos </v-btn>
+        </v-list-item-content>
+      </v-list-item>
+    </v-navigation-drawer>
+    <v-row>
+      <router-view></router-view>
+    </v-row>
+  </v-container>
 </template>
 
+
+<style>
+</style>
 <script>
+// import router from './router';
+
 
 export default {
-  name: 'App',
+  data : () => ({
+      menuouvert : false 
+  })
 
-  data: () => ({
-    //
-  }),
 };
 </script>
