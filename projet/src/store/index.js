@@ -32,7 +32,7 @@ export default new Vuex.Store({
   },
   actions: {
     registerOrga({commit}, mdpOrga) {
-      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+      this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
         method: 'POST', headers: {
           'Content-Type': 'application/json'
         }, body: JSON.stringify(mdpOrga)
@@ -109,7 +109,7 @@ export default new Vuex.Store({
             })
             .catch(error => console.log('Error:', error))
       }, getNomOrga({commit}, nomOrga) {
-      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+      this.state.nomOrga = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
             method: 'GET', headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify(nomOrga)
