@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import OrganisationView from '@/views/OrganisationView.vue'
-import HereosView from '@/views/HeroesView.vue'
+import HeroesView from '@/views/HeroesView.vue'
 import TeamsView from '@/views/TeamsView.vue'
 Vue.use(VueRouter)
 
@@ -21,9 +21,9 @@ const routes = [
     name: 'teams',
     component: TeamsView
   },{
-    path: '/Hereos',
-    name: 'hereos',
-    component: HereosView
+    path: '/Heroes',
+    name: 'Heroes',
+    component: HeroesView
   }
 ]
 
