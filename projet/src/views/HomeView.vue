@@ -1,15 +1,19 @@
 <template>
-  <hello-world />
+  <v-container>
+    <v-app-bar>
+      <v-app-bar-title>
+        Home
+      </v-app-bar-title>
+    </v-app-bar>
+  </v-container>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
 
   export default {
-    name: 'home-view',
 
     components: {
-      HelloWorld,
+      
     },
   }
 </script>
