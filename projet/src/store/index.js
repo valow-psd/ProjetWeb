@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    mdpOrga: null, alias: null, currentHero: null, listeEquipe: null, currentEquipe: null, nomOrga: null, currentOrga: null
+    mdpOrga: null, alias: null, currentHero: null, listeEquipe: null, currentEquipe: null, listeOrga: null, currentOrga: null
   },
   mutations: {
     setMdpOrga(state, mdpOrga) {
@@ -23,8 +23,8 @@ export default new Vuex.Store({
     setCurrentEquipe(state, currentEquipe) {
         state.currentEquipe = currentEquipe
     },
-    setNomOrga(state, nomOrga) {
-        state.nomOrga = nomOrga
+    setListeOrga(state, listeOrga) {
+        state.listeOrga = listeOrga
     },
     setCurrentOrga(state, currentOrga) {
         state.currentOrga = currentOrga
@@ -76,7 +76,7 @@ export default new Vuex.Store({
             })
             .catch(error => console.log('Error:', error))
       }, getListeEquipe({commit}, listeEquipe) {
-      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/teams/get', {
           method: 'GET', headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify(listeEquipe)
@@ -108,15 +108,15 @@ export default new Vuex.Store({
                 commit('setCurrentEquipe', response.data)
             })
             .catch(error => console.log('Error:', error))
-      }, getNomOrga({commit}, nomOrga) {
-      this.state.nomOrga = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+      }, getListeOrga({commit}, nomOrga) {
+      this.state.nomOrga = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/get', {
             method: 'GET', headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify(nomOrga)
         })
             .then(response => response.json())
             .then(response => {
-                commit('setNomOrga', response.data)
+                commit('setListeOrga', response.data)
             })
             .catch(error => console.log('Error:', error))
       }, getCurrentOrga({commit}, currentOrga) {
@@ -149,7 +149,7 @@ export default new Vuex.Store({
     getCurrentHero: state => state.currentHero,
     getListeEquipe: state => state.listeEquipe,
     getCurrentEquipe: state => state.currentEquipe,
-    getNomOrga: state => state.nomOrga,
+    getListeOrga: state => state.listeOrga,
     getCurrentOrga: state => state.currentOrga
 
   }

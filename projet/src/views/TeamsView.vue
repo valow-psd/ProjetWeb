@@ -1,18 +1,13 @@
 <template>
-    <v-container>
-    <v-app-bar>
-      <v-app-bar-title>
-        Teams
-      </v-app-bar-title>
-    </v-app-bar>
-    <!-- <v-for -->
-  </v-container>
-  </template>
+  <TeamsComponents/>
+</template>
   
-  <script>
-  export default {
-    name: 'OrganisationView',
+<script>
+import TeamsComponents from "@/components/TeamsComponent.vue"
+export default {
+    name: 'TeamsView',
+    components : {TeamsComponents}
   }
-  </script>
+</script>
   
   

@@ -2,15 +2,9 @@
   <v-container>
     <v-app-bar>
       <v-app-bar-title>
-        Organisations
+        Teams
       </v-app-bar-title>
     </v-app-bar>
-    <br>
-    <v-button  @click=" display_button = !display_button" >Appuyer pour ajouter </v-button>
-    <br>
-    <v-text-field v-if=display_button v-model="phrase_secrete" label="Entrez la phrase secrete">
-    </v-text-field>
-
     <br>
     <table>
       <thead>
@@ -21,8 +15,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="ele in getListeOrga" :key="ele.id">
+        <tr v-for="ele in getListeEquipe" :key="ele.id">
           <td>{{ ele.name }}</td>
+          <td>{{ ele.nbAffiliations}}</td>
         </tr>
       </tbody>
     </table>
@@ -73,30 +68,30 @@ table{
   margin-left: 100px;
   width: 80%;
 }
+
+
+
 </style>
-  
 <script>
 
 
 
 //import {  mapActions } from 'vuex';
 export default {
-  name: 'OrganisationComponents',
+  name: 'TeamsComponents',
   data: () => ({
-    phrase_secrete: "oui",
-    columns:["name"] ,
-    display_button : false ,
-    items: {} ,
+    columns: ["name", "nom d'affiliation"],
+    items: {},
   }),
 
 
   computed: {
-    getListeOrga() {
-      return this.$store.state.listeOrga
+    getListeEquipe() {
+      return this.$store.state.listeEquipe
     },
   },
   mounted() {
-    this.$store.dispatch("getListeOrga")
+    this.$store.dispatch("getListeEquipe")
     //console.log(this.nomOrga , "totot")
   }
 
@@ -104,5 +99,5 @@ export default {
 }
 
 </script>
-  
-  
+    
+    
