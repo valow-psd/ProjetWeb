@@ -2,14 +2,27 @@
   <v-container>
     <v-app-bar>
       <v-app-bar-title>
-        Organisations
+        <p>Organisations</p>
       </v-app-bar-title>
     </v-app-bar>
     <br>
-    <v-button  @click=" display_button = !display_button" >Appuyer pour ajouter </v-button>
+
+    <v-btn variant="tonal" @click=" display_button = !display_button">
+      Appuyez pour ajouter +
+    </v-btn>
     <br>
-    <v-text-field v-if=display_button v-model="phrase_secrete" label="Entrez la phrase secrete">
-    </v-text-field>
+   <v-text-field v-if=display_button v-model="phrase_secrete" label="Entrez la phrase secrete"> </v-text-field>
+
+    
+    <v-form @submit.prevent="submit" v-if=display_button>
+      <v-text-field
+        v-model="orgName"
+        :rules="orgNameRules"
+        label="Nom organisation"
+        required
+      ></v-text-field>
+      <v-btn type="submit" block class="mt-2">Envoyer</v-btn>
+    </v-form>
 
     <br>
     <table>
@@ -86,7 +99,11 @@ export default {
     phrase_secrete: "oui",
     columns:["name"] ,
     display_button : false ,
-    items: {} ,
+    items: {},
+    orgName: "",
+      orgNameRules: [
+        v => !!v || "Un nom d'orga est requis",
+      ],
   }),
 
 

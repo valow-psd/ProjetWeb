@@ -2,10 +2,33 @@
   <v-container>
     <v-app-bar>
       <v-app-bar-title>
-        Teams
+        <p>Teams</p>
       </v-app-bar-title>
     </v-app-bar>
     <br>
+
+    <v-btn variant="tonal" @click=" display_button = !display_button">
+      Appuyez pour ajouter +
+    </v-btn>
+    <br>
+   <v-text-field v-if=display_button v-model="phrase_secrete" label="Entrez la phrase secrete"> </v-text-field>
+
+   <br>
+
+    
+    <v-form @submit.prevent="submit" v-if=display_button>
+      <v-text-field
+        v-model="teamName"
+        :rules="teamNameRules"
+        label="Nom équipe"
+        required
+      ></v-text-field>
+      <v-btn type="submit" block class="mt-2">Envoyer</v-btn>
+    </v-form>
+
+    <br>
+
+
     <table>
       <thead>
         <tr>
@@ -81,7 +104,13 @@ export default {
   name: 'TeamsComponents',
   data: () => ({
     columns: ["name", "nom d'affiliation"],
+    phrase_secrete: "oui",
     items: {},
+    teamName: "",
+    display_button : false ,
+    teamNameRules: [
+        v => !!v || "Un nom d'équipe est requis",
+      ],
   }),
 
 

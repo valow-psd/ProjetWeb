@@ -2,7 +2,7 @@
     <v-container>
     <v-app-bar>
       <v-app-bar-title>
-        Heroes
+        <p>Héros</p>
       </v-app-bar-title>
     </v-app-bar>
   </v-container>

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from "@/router";
+
 
 Vue.use(Vuex)
 
@@ -31,18 +33,50 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    registerOrga({commit}, mdpOrga) {
-      this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+    registerOrga({commit}, orga) {
+      this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/create', {
         method: 'POST', headers: {
           'Content-Type': 'application/json'
-        }, body: JSON.stringify(mdpOrga)
+        }, body: JSON.stringify({
+            name : orga.orgName,
+            secret : orga.phrase_secrete
+        })
       })
           .then(response => response.json())
           .then(response => {
-            commit('setMdpOrga', response.data)
+            commit('setCurrentOrga', response.data) 
+            router.push({name: 'organisation'}).then(r => console.log(r))
+            return response
           })
           .catch(error => console.log('Error:', error))
-    }, getAlias({commit}, alias) {
+    },
+    registerTeam({commit}, team) {
+        this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/teams/create', {
+          method: 'POST', headers: {
+            'Content-Type': 'application/json'
+          }, body: JSON.stringify({
+            name : team.teamName
+          }
+          )
+        })
+            .then(response => response.json())
+            .then(response => {
+              commit('setMdpOrga', response.data)
+            })
+            .catch(error => console.log('Error:', error))
+      },
+      registerHero({commit}, mdpOrga) {
+        this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+          method: 'POST', headers: {
+            'Content-Type': 'application/json'
+          }, body: JSON.stringify(mdpOrga)
+        })
+            .then(response => response.json())
+            .then(response => {
+              commit('setMdpOrga', response.data)
+            })
+            .catch(error => console.log('Error:', error))
+      }, getAlias({commit}, alias) {
       return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
         method: 'GET', headers: {
           'Content-Type': 'application/json'
