@@ -5,14 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    mdpOrga: null, alias: null, currentHero: null, listeEquipe: null, currentEquipe: null, listeOrga: null, currentOrga: null
+    mdpOrga: null, listeHeroes: null, currentHero: null, listeEquipe: null, currentEquipe: null, listeOrga: null, currentOrga: null
   },
   mutations: {
     setMdpOrga(state, mdpOrga) {
       state.mdpOrga = mdpOrga
     },
-    setAlias(state, alias) {
-        state.alias = alias
+    setListeHeroes(state, listeHeroes) {
+        console.log("oui")
+        state.listeHeroes = listeHeroes
     },
     setCurrentHero(state, currentHero) {
         state.currentHero = currentHero
@@ -42,18 +43,22 @@ export default new Vuex.Store({
             commit('setMdpOrga', response.data)
           })
           .catch(error => console.log('Error:', error))
-    }, getAlias({commit}, alias) {
-      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+    }, 
+    
+    getListeHero({commit}, alias) {
+      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/heroes/getaliases' , {
         method: 'GET', headers: {
           'Content-Type': 'application/json'
         }, body: JSON.stringify(alias)
       })
           .then(response => response.json())
           .then(response => {
-            commit('setAlias', response.data)
+            commit('setListeHeroes', response.data)
           })
           .catch(error => console.log('Error:', error))
-    }, getCurrentHero({commit}, currentHero) {
+    },
+    
+    getCurrentHero({commit}, currentHero) {
       return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
         method: 'GET', headers: {
             'Content-Type': 'application/json'
@@ -145,7 +150,7 @@ export default new Vuex.Store({
 
   },
   getters: {
-    getAlias: state => state.alias,
+    getListeHeroes: state => state.listeHeroes,
     getCurrentHero: state => state.currentHero,
     getListeEquipe: state => state.listeEquipe,
     getCurrentEquipe: state => state.currentEquipe,

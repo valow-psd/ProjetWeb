@@ -1,16 +1,13 @@
 <template>
-    <v-container>
-    <v-app-bar>
-      <v-app-bar-title>
-        Heroes
-      </v-app-bar-title>
-    </v-app-bar>
-  </v-container>
+    <HeroesComponents/>
   </template>
   
   <script>
+  import HeroesComponents from "@/components/HeroesComponent.vue"
+
   export default {
     name: 'HeroesView',
+    components : {HeroesComponents}
   }
   </script>
   
