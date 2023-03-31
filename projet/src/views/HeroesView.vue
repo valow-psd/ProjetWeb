@@ -1,12 +1,6 @@
 <template>
-    <v-container>
-    <v-app-bar>
-      <v-app-bar-title>
-        <p>Héros</p>
-      </v-app-bar-title>
-    </v-app-bar>
-  </v-container>
-  </template>
+  <HeroesComponents/>
+</template>
   
   <script>
   import HeroesComponents from "@/components/HeroesComponent.vue"

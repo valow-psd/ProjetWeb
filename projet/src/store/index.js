@@ -31,7 +31,7 @@ export default new Vuex.Store({
     },
     setCurrentOrga(state, currentOrga) {
         state.currentOrga = currentOrga
-    }
+    },
   },
   actions: {
     registerOrga({commit}, orga) {
@@ -51,38 +51,35 @@ export default new Vuex.Store({
           })
           .catch(error => console.log('Error:', error))
     },
-    registerTeam({commit}, team) {
-        this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/teams/create', {
-          method: 'POST', headers: {
-            'Content-Type': 'application/json'
-          }, body: JSON.stringify({
-            name : team.teamName
-          }
-          )
+},
+registerTeam({commit}, team) {
+    this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/teams/create', {
+      method: 'POST', headers: {
+        'Content-Type': 'application/json'
+      }, body: JSON.stringify({
+        name : team.teamName
+      }
+      )
+    })
+        .then(response => response.json())
+        .then(response => {
+          commit('setMdpOrga', response.data)
         })
-            .then(response => response.json())
-            .then(response => {
-              commit('setMdpOrga', response.data)
-            })
-            .catch(error => console.log('Error:', error))
-      },
-      registerHero({commit}, mdpOrga) {
-        this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
-          method: 'POST', headers: {
-            'Content-Type': 'application/json'
-          }, body: JSON.stringify(mdpOrga)
+        .catch(error => console.log('Error:', error))
+  },
+  registerHero({commit}, mdpOrga) {
+    fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+      method: 'POST', headers: {
+        'Content-Type': 'application/json'
+      }, body: JSON.stringify(mdpOrga)
+    })
+        .then(response => response.json())
+        .then(response => {
+          commit('setMdpOrga', response.data)
         })
-            .then(response => response.json())
-            .then(response => {
-              commit('setMdpOrga', response.data)
-            })
-            .catch(error => console.log('Error:', error))
-      }, getAlias({commit}, alias) {
-      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
-    }, 
-    
-    getListeHero({commit}, alias) {
-      return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/heroes/getaliases' , {
+        .catch(error => console.log('Error:', error))
+  },getListeHero({commit}, alias) {
+      fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/heroes/getaliases', {
         method: 'GET', headers: {
           'Content-Type': 'application/json'
         }, body: JSON.stringify(alias)
@@ -184,7 +181,7 @@ export default new Vuex.Store({
             .catch(error => console.log('Error:', error))
       }
 
-  },
+  ,
   getters: {
     getListeHeroes: state => state.listeHeroes,
     getCurrentHero: state => state.currentHero,
