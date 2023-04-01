@@ -2,9 +2,27 @@
   <v-container>
     <v-app-bar>
       <v-app-bar-title>
-        Heroes
+        <p>Heroes</p>
       </v-app-bar-title>
     </v-app-bar>
+    <br>
+    <v-btn variant="tonal" @click=" display_button = !display_button">
+      Ajouter un nouvel héro
+    </v-btn>
+    <br>
+
+    <v-form @submit.prevent="creeNouveauHero" v-if=display_button>
+      <v-text-field v-if=display_button :rules="heroRealNameRules" v-model="heroRealName" label="Vrai nom"
+                    required></v-text-field>
+      <v-text-field
+          v-model="heroPublicName"
+          :rules="heroPublicNameRules"
+          label="Nom public"
+          required
+      ></v-text-field>
+      <br>
+      <v-btn value="actions" block class="mt-2" @click="creeNouveauHero">Ajouter</v-btn>
+    </v-form>
     <br>
     <v-btn @click="ajouter = !ajouter">
       ajouter
@@ -36,16 +54,16 @@
     <br>
     <table>
       <thead>
-        <tr>
-          <th v-for="(item, index) in columns" :key="index">
-            {{ item }}
-          </th>
-        </tr>
+      <tr>
+        <th v-for="(item, index) in columns" :key="index">
+          {{ item }}
+        </th>
+      </tr>
       </thead>
       <tbody>
-        <tr v-for="ele in getListeHeroes" :key="ele.id">
-          <td>{{ ele.publicName }}</td>
-        </tr>
+      <tr v-for="ele in getListeHero" :key="ele.id">
+        <td>{{ ele.publicName }}</td>
+      </tr>
       </tbody>
     </table>
 
@@ -98,36 +116,40 @@ table {
 }
 
 </style>
-  
+
 <script>
 
+
+import {mapActions} from "vuex";
 
 export default {
   name: 'HeroesComponents',
   data: () => ({
-    columns: ["name"],
+    columns: ["publicName"],
     items: {},
-    ajouter: false ,
-    publicName : "" ,
-    realName : "" ,
-    powers : [] ,
-    card: false,
-    namepouvoir:"",
-    type:0,
-    level:0
-
+    heroPublicName: "",
+    heroRealName: "",
+    display_button : false ,
+    heroPublicNameRules: [
+      v => !!v || "Un nom public de héro est requis",
+    ],
+    heroRealNameRules: [
+      v => !!v || "Un nom réel de héro est requis",
+    ],
   }),
-  methods:{
-    toto(){
-      console.log("hello")
-      this.dialog=true
+
+    async creeNouveauHero() {
+      const hero = {
+        publicName: this.heroPublicName,
+        realName: this.heroRealName,
+      };
+      await this.registerHero(hero);
+      console.log("envoie2")
     }
   },
-
-
   computed: {
-    getListeHeroes() {
-      return this.$store.state.listeHeroes
+    getListeHero() {
+      return this.$store.state.listeHero
     },
   },
   mounted() {

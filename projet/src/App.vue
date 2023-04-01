@@ -9,6 +9,7 @@
           <v-btn v-if="menuouvert" to="Organisation" @click="$router.push('/Organisation')"> Organisation </v-btn>
           <v-btn v-if="menuouvert" to="Teams" @click="$router.push('/Teams')"> Teams  </v-btn>
           <v-btn v-if="menuouvert" to="Heroes" @click="$router.push('/Heroes')"> Heroes </v-btn>
+          <v-btn v-if="menuouvert" to="Login" @click="$router.push('/Login')"> Se Connecter </v-btn>
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>

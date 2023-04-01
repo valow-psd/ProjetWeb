@@ -2,14 +2,27 @@
   <v-container>
     <v-app-bar>
       <v-app-bar-title>
-        Organisations
+        <p>Organisations</p>
       </v-app-bar-title>
     </v-app-bar>
     <br>
-    <v-button  @click=" display_button = !display_button" >Appuyer pour ajouter </v-button>
+
+    <v-btn variant="tonal" @click=" display_button = !display_button">
+      Ajouter une nouvelle organisation
+    </v-btn>
     <br>
-    <v-text-field v-if=display_button v-model="phrase_secrete" label="Entrez la phrase secrete">
-    </v-text-field>
+
+    <v-form @submit.prevent="registerOrga" v-if=display_button>
+      <v-text-field v-if=display_button :rules="orgPhraseRules" v-model="phrase_secrete" label="Entrez la phrase secrete" required> </v-text-field>
+      <v-text-field
+        v-model="orgName"
+        :rules="orgNameRules"
+        label="Nom organisation"
+        required
+      ></v-text-field>
+      <br>
+      <v-btn value="actions" block class="mt-2" @click="registerNouvelleOrga">Ajouter</v-btn>
+    </v-form>
 
     <br>
     <table>
@@ -76,31 +89,45 @@ table{
 </style>
   
 <script>
-
+import { mapActions, mapState } from "vuex";
 
 
 //import {  mapActions } from 'vuex';
 export default {
   name: 'OrganisationComponents',
   data: () => ({
-    phrase_secrete: "oui",
+    phrase_secrete: "",
     columns:["name"] ,
     display_button : false ,
-    items: {} ,
+    items: {},
+    orgName: "",
+    orgNameRules: [
+      v => !!v || "Un nom d'orga est requis",
+    ],
+    orgPhraseRules: [
+        v => !!v || "Une phrase est requise",
+    ]
   }),
-
-
+  methods: {
+    ...mapActions(["registerOrga"]),
+    async registerNouvelleOrga(){
+      const org = {
+        name: this.orgName,
+        secret: this.phrase_secrete
+      };
+      await this.registerOrga(org);
+    }
+  },
   computed: {
     getListeOrga() {
       return this.$store.state.listeOrga
     },
+    ...mapState(["orgs"]),
   },
   mounted() {
     this.$store.dispatch("getListeOrga")
     //console.log(this.nomOrga , "totot")
   }
-
-
 }
 
 </script>
