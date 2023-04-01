@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a4e6756-099c-4849-a5e1-23b794da2275" name="Changes" comment="" />
+    <list default="true" id="2a4e6756-099c-4849-a5e1-23b794da2275" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/projet/src/views/LoginView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/node_modules/.cache/eslint/e6cee0d8.json" beforeDir="false" afterPath="$PROJECT_DIR$/projet/node_modules/.cache/eslint/e6cee0d8.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/components/HeroesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/components/HeroesComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/components/OrganisationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/components/OrganisationComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/components/TeamsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/components/TeamsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/service/axios.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/service/axios.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/service/heroes.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/service/heroes.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/service/organisations.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/service/organisations.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/service/teams.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/service/teams.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projet/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/views/HomeView.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,22 +46,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/valys/Documents/S4/Web/ProjetWeb",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/valys/Documents/S4/Web/ProjetWeb&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,6 +73,7 @@
       <workItem from="1680287903847" duration="214000" />
       <workItem from="1680288128356" duration="4965000" />
       <workItem from="1680331856530" duration="17803000" />
+      <workItem from="1680363146451" duration="2001000" />
     </task>
     <servers />
   </component>

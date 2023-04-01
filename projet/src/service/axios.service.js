@@ -1,13 +1,14 @@
-export default myaxios
-
 import axios from 'axios'
 
-// create a special axiosAgent agent that works with the apidemo API
-const axiosAgent = axios.create({
-  baseURL: 'https://apidemo.iut-bm.univ-fcomte.frherocorp'
-});
+let root = 'https://apidemo.iut-bm.univ-fcomte.fr/herocorp'
 
-axiosAgent.interceptors.request.use(
+
+const myaxios = axios.create({
+  baseURL : root,
+  withCredentials: true
+})
+
+myaxios.interceptors.request.use(
     config => {
       return { ...config, headers: { 'app-key': 'ceci est la clef secret'} }
     },
@@ -16,7 +17,7 @@ axiosAgent.interceptors.request.use(
     }
 )
 
-axiosAgent.interceptors.response.use(
+myaxios.interceptors.response.use(
     res => {
       console.log("OK => "+JSON.stringify(res))
       return res
@@ -75,7 +76,7 @@ response.data.data contient les données réelles renvoyée par l'API, c.a.d. po
 async function getRequest(service, name) {
   let response = null
   try {
-    response = await axiosAgent.get(service)
+    response = await myaxios.get(service)
   } catch (err) {
     // le catch se fait si le serveur répond avec une erreur type 4XX, 5XX, ou bien si le serveur est off
     // dans ce cas, on appelle la méthode pour traiter ces types d'erreurs
@@ -92,7 +93,7 @@ async function getRequest(service, name) {
 async function postRequest(service, data, name) {
   let response = null
   try {
-    response = await axiosAgent.post(service, data)
+    response = await myaxios.post(service, data)
   } catch (err) {
     // le catch se fait si le serveur répond avec une erreur type 4XX, 5XX, ou bien si le serveur est off
     // dans ce cas, on appelle la méthode pour traiter ces types d'erreurs
@@ -104,7 +105,7 @@ async function postRequest(service, data, name) {
 async function patchRequest(service, data, name) {
   let response = null
   try {
-    response = await axiosAgent.patch(service, data)
+    response = await myaxios.patch(service, data)
   } catch (err) {
     // le catch se fait si le serveur répond avec une erreur type 4XX, 5XX, ou bien si le serveur est off
     // dans ce cas, on appelle la méthode pour traiter ces types d'erreurs
@@ -112,6 +113,8 @@ async function patchRequest(service, data, name) {
   }
   return response.data;
 }
+
+export default myaxios;
 
 export {
   getRequest,
