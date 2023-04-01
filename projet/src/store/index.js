@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from "@/router";
+//import router from "@/router";
 import {createTeams} from '@/service/teams.service.js';
-
+import {createOrganisation} from '@/service/organisations.service.js';
 
 Vue.use(Vuex)
 
@@ -43,30 +43,24 @@ export default new Vuex.Store({
         },
         createTeam(state, equipe){
             state.listeEquipe.push(equipe)
+        },
+        createOrg(state, org){
+            state.listeOrga.push(org);
         }
     },
     actions: {
-        registerOrga({commit}, orga) {
-            this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/create', {
-                method: 'POST', headers: {
-                    'Content-Type': 'application/json'
-                }, body: JSON.stringify({
-                    name: orga.orgName,
-                    secret: orga.phrase_secrete
-                })
-            })
-                .then(response => response.json())
-                .then(response => {
-                    commit('setCurrentOrga', response.data)
-                    router.push({name: 'organisation'}).then(r => console.log(r))
-                    return response
-                })
-                .catch(error => console.log('Error:', error))
+        async registerOrga({commit}, {name, secret}) {
+            try {
+                const org = await createOrganisation({name, secret});
+                commit("createOrg", org)
+            }catch (error) {
+                console.error(error);
+            }
         },
         async registerTeam({commit}, team) {
             try {
                 const nouvelleEquipe = await createTeams(team);
-                commit('createTeam', nouvelleEquipe.data.data)
+                commit('createTeam', nouvelleEquipe.data.data);
             }catch(error) {
                 console.error(error);
             }
