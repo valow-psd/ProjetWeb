@@ -1,11 +1,14 @@
 <template>
-  <HeroesComponents/>
-</template>
+    <HeroesComponents/>
+  </template>
+  
+  <script>
+  import HeroesComponents from "@/components/HeroesComponent.vue"
 
-<script>
-import HeroesComponents from "@/components/HeroesComponent.vue"
-export default {
-  name: 'HeroesView',
-  components : {HeroesComponents}
-}
-</script>
+  export default {
+    name: 'HeroesView',
+    components : {HeroesComponents}
+  }
+  </script>
+  
+  

@@ -2,30 +2,10 @@
   <v-container>
     <v-app-bar>
       <v-app-bar-title>
-        <p>Teams</p>
+        Teams
       </v-app-bar-title>
     </v-app-bar>
     <br>
-
-    <v-btn variant="tonal" @click=" display_button = !display_button">
-      Appuyez pour ajouter +
-    </v-btn>
-    <br>
-   <br>
-
-    <v-form @submit.prevent="submit" v-if=display_button>
-      <v-text-field
-        v-model="teamName"
-        :rules="teamNameRules"
-        label="Nom équipe"
-        required
-      ></v-text-field>
-      <v-btn value="name" block class="mt-2" @click="creeNouvelleEquipe">Créer nouvelle équipe</v-btn>
-    </v-form>
-
-    <br>
-
-
     <table>
       <thead>
         <tr>
@@ -97,30 +77,14 @@ table{
 
 
 //import {  mapActions } from 'vuex';
-import {mapActions} from "vuex";
-
 export default {
   name: 'TeamsComponents',
   data: () => ({
     columns: ["name", "nom d'affiliation"],
     items: {},
-    teamName: "",
-    display_button : false ,
-    teamNameRules: [
-        v => !!v || "Un nom d'équipe est requis",
-      ],
   }),
-  methods: {
-    ...mapActions(["registerTeam"]),
 
-    async creeNouvelleEquipe() {
-      const team = {
-        name: this.teamName,
-      };
-      await this.registerTeam(team);
-      console.log("envoie");
-    }
-  },
+
   computed: {
     getListeEquipe() {
       return this.$store.state.listeEquipe

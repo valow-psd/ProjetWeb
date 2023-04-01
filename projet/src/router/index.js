@@ -4,7 +4,6 @@ import HomeView from '@/views/HomeView.vue'
 import OrganisationView from '@/views/OrganisationView.vue'
 import HeroesView from '@/views/HeroesView.vue'
 import TeamsView from '@/views/TeamsView.vue'
-import LoginView from '@/views/LoginView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,10 +24,6 @@ const routes = [
     path: '/Heroes',
     name: 'Heroes',
     component: HeroesView
-  },{
-    path: '/Login',
-    name: 'Login',
-    component: LoginView
   }
 ]
 
