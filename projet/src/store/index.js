@@ -75,7 +75,7 @@ export default new Vuex.Store({
             }
         },
 
-        getListeHero({commit}, alias) {
+        async getListeHero({commit}, alias) {
             return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/heroes/getaliases', {
                 method: 'GET', headers: {
                     'Content-Type': 'application/json'

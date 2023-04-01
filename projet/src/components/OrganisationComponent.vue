@@ -6,7 +6,9 @@
       </v-app-bar-title>
     </v-app-bar>
     <br>
-    <v-button @click=" display_button = !display_button">Appuyer pour ajouter +</v-button>
+    <v-btn variant="tonal" @click=" display_button = !display_button">
+      Ajouter une nouvelle orga
+    </v-btn>
     <br>
     <v-form @submit.prevent="registerOrga" v-if=display_button>
       <v-text-field v-if=display_button :rules="orgPhraseRules" v-model="phrase_secrete"

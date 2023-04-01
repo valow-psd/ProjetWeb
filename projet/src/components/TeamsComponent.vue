@@ -7,7 +7,7 @@
     </v-app-bar>
     <br>
     <v-btn variant="tonal" @click=" display_button = !display_button">
-      Appuyez pour ajouter +
+      Ajouter une nouvelle team
     </v-btn>
     <br>
     <v-form @submit.prevent="submit" v-if=display_button>

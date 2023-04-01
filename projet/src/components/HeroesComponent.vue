@@ -118,6 +118,7 @@ export default {
       console.log("envoie2")
     }
   },
+
   computed: {
     getListeHeroes() {
       return this.$store.state.listeHeroes
