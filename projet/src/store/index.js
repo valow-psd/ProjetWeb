@@ -16,8 +16,8 @@ export default new Vuex.Store({
         currentOrga: null
     },
     mutations: {
-        setMdpOrga(state, mdpOrga) {
-            state.mdpOrga = mdpOrga
+        setMdpOrga(state, mdp) {
+            state.mdp = mdp
         },
         setAlias(state, alias) {
             state.alias = alias
@@ -37,6 +37,9 @@ export default new Vuex.Store({
         setCurrentOrga(state, currentOrga) {
             state.currentOrga = currentOrga
         },
+        setListeHero(state, listeHero) {
+            state.listeHero = listeHero
+        }
     },
     actions: {
         registerOrga({commit}, orga) {
@@ -82,15 +85,16 @@ export default new Vuex.Store({
                     commit('setMdpOrga', response.data)
                 })
                 .catch(error => console.log('Error:', error))
-        }, getListeHero({commit}, alias) {
-            return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
+        },
+        getListeHero({commit}, listeHero) {
+            return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/heroes/getaliases', {
                 method: 'GET', headers: {
                     'Content-Type': 'application/json'
-                }, body: JSON.stringify(alias)
+                }, body: JSON.stringify(listeHero)
             })
                 .then(response => response.json())
                 .then(response => {
-                    commit('setAlias', response.data)
+                    commit('setListeHero', response.data)
                 })
                 .catch(error => console.log('Error:', error))
         }

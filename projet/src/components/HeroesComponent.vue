@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="ele in getListeHeroes" :key="ele.id">
+        <tr v-for="ele in getListeHero" :key="ele.id">
           <td>{{ ele.publicName }}</td>
         </tr>
       </tbody>
@@ -76,14 +76,15 @@ table{
 export default {
   name: 'HeroesComponents',
   data: () => ({
-    columns:["name"] ,
+    columns:["publicName"] ,
     items: {} ,
+
   }),
 
 
   computed: {
-    getListeHeroes() {
-      return this.$store.state.listeHeroes
+    getListeHero() {
+      return this.$store.state.listeHero
     },
   },
   mounted() {
