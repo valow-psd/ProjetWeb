@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 //import router from "@/router";
 import {createTeams} from '@/service/teams.service.js';
 import {createOrganisation} from '@/service/organisations.service.js';
+import {createHero} from "@/service/heroes.service";
 
 Vue.use(Vuex)
 
@@ -46,6 +47,9 @@ export default new Vuex.Store({
         },
         createOrg(state, org){
             state.listeOrga.push(org);
+        },
+        createHero(state, hero){
+            state.listeHero.push(hero);
         }
     },
     actions: {
@@ -65,17 +69,13 @@ export default new Vuex.Store({
                 console.error(error);
             }
         },
-        registerHero({commit}, mdpOrga) {
-            fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
-                method: 'POST', headers: {
-                    'Content-Type': 'application/json'
-                }, body: JSON.stringify(mdpOrga)
-            })
-                .then(response => response.json())
-                .then(response => {
-                    commit('setMdpOrga', response.data)
-                })
-                .catch(error => console.log('Error:', error))
+        async registerHero({commit}, {publicName, realName}) {
+            try {
+                const hero = await createHero({publicName, realName});
+                commit("createHero", hero);
+            }catch (error){
+                console.error(error);
+            }
         },
         getListeHero({commit}, listeHero) {
             return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/heroes/getaliases', {

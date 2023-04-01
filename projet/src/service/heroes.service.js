@@ -1,6 +1,6 @@
-import {getRequest} from '../service/axios.service'
+//import {getRequest} from '../service/axios.service'
 import myaxios from '../service/axios.service'
-
+/*
 async function getAlias() {
    let result = {error: 0, status: 200, data: null}
    let response = await myaxios.get('/heroes/getaliases' )
@@ -10,18 +10,11 @@ async function getAlias() {
    }
    return result
 }
-
-async function addHeroes() {
-   let result = {error: 0, status: 200, data: null}
-   let heroesToAdd = { _id:"id_team" ,publicName:  "..." , realName: "..." , powers: [ { name: "..." , type: "..." , level: "..." }, {name: "..." , type: "..." , level: "..." } ] }
-   let response = await myaxios.patch('/teams/addheroes', heroesToAdd )
-   if (response.error != 0) {
-      result.error=1 
-      result.data=response.error
-   }
-   return result
+*/
+export const createHero = (hero) => {
+   return myaxios.post("heroes/create", hero);
 }
-
+/*
 async function updateHeroes() {
    let result = {error: 0, status: 200, data: null}
    let heroesTomodifie = { idHeroes: [ "id_toto", "id_tata"], idTeam: "id_team"}
@@ -45,5 +38,5 @@ async function getHeroesById(id ) {
    }
    else result = response
    return result
-}
+}*/
  
