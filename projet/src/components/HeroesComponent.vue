@@ -5,34 +5,7 @@
         Heroes
       </v-app-bar-title>
     </v-app-bar>
-    <br>
-    <v-btn @click="ajouter = !ajouter">
-      ajouter
-    </v-btn>
-    <br>
 
-    <div v-if="ajouter">
-      <v-text-field v-model="publicName" label="Entrez le nom du heros"> </v-text-field>
-      <v-text-field v-model="realName" label="Entrez le nom du heros"> </v-text-field>
-      <v-text-field v-model="powers" label=""> </v-text-field>
-      <v-btn
-    @click="card = true" >
-      selectioner un pouvoir un pouvoir
-    </v-btn>
-    </div>
-
-     <v-card v-if="card">
-      <v-text-field  v-model="namepouvoir" label="Entrez le nom du pouvoir"> </v-text-field>
-      <label>entrez le type du pouvoir :</label>
-      <br>
-      <input type="number" min=0 max=7 :value="type">
-      <br>
-      <label>entrez le level du pouvoir : </label>
-      <br>
-      <input type="number" min=0 max=100 :value="type">
-
-    </v-card>
-    
     <br>
     <table>
       <thead>
@@ -48,7 +21,6 @@
         </tr>
       </tbody>
     </table>
-
   </v-container>
 </template>
 <style>
@@ -92,11 +64,10 @@ th.active .arrow {
   opacity: 1;
 }
 
-table {
+table{
   margin-left: 100px;
   width: 80%;
 }
-
 </style>
   
 <script>
@@ -105,24 +76,9 @@ table {
 export default {
   name: 'HeroesComponents',
   data: () => ({
-    columns: ["name"],
-    items: {},
-    ajouter: false ,
-    publicName : "" ,
-    realName : "" ,
-    powers : [] ,
-    card: false,
-    namepouvoir:"",
-    type:0,
-    level:0
-
+    columns:["name"] ,
+    items: {} ,
   }),
-  methods:{
-    toto(){
-      console.log("hello")
-      this.dialog=true
-    }
-  },
 
 
   computed: {
