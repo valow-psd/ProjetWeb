@@ -43,7 +43,7 @@ async function getAllOrgs() {
  async function addTeam() {
     let result = {error: 0, status: 200, data: null}
     let TeamsToAdd = { idTeam: "id_team"}
-    let response = await axios.patch('/orgs/addteam', TeamsToAdd , {headers : "teams's secret here" } )
+    let response = await myaxios.patch('/orgs/addteam', TeamsToAdd , {headers : "teams's secret here" } )
     if (response.error != 0) {
        result.error=1 
        result.data=response.error
@@ -54,7 +54,7 @@ async function getAllOrgs() {
  async function removeTeam() {
     let result = {error: 0, status: 200, data: null}
     let TeamsToRemove = { idTeam: "id_team"}
-    let response = await axios.patch('/orgs/removeteam', TeamsToRemove , {headers : "teams's secret here" })
+    let response = await myaxios.patch('/orgs/removeteam', TeamsToRemove , {headers : "teams's secret here" })
     if (response.error != 0) {
        result.error=1 
        result.data=response.error

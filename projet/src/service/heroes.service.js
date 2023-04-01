@@ -1,9 +1,9 @@
-import {getRequest ,postRequest  ,patchRequest} from '../service/axios.service'
+import {getRequest} from '../service/axios.service'
 import myaxios from '../service/axios.service'
 
 async function getAlias() {
    let result = {error: 0, status: 200, data: null}
-   let response = await axios.get('/heroes/getaliases' )
+   let response = await myaxios.get('/heroes/getaliases' )
    if (response.error != 0) {
       result.error=1 
       result.data=response.error
@@ -14,7 +14,7 @@ async function getAlias() {
 async function addHeroes() {
    let result = {error: 0, status: 200, data: null}
    let heroesToAdd = { _id:"id_team" ,publicName:  "..." , realName: "..." , powers: [ { name: "..." , type: "..." , level: "..." }, {name: "..." , type: "..." , level: "..." } ] }
-   let response = await axios.patch('/teams/addheroes', heroesToAdd )
+   let response = await myaxios.patch('/teams/addheroes', heroesToAdd )
    if (response.error != 0) {
       result.error=1 
       result.data=response.error
@@ -25,7 +25,7 @@ async function addHeroes() {
 async function updateHeroes() {
    let result = {error: 0, status: 200, data: null}
    let heroesTomodifie = { idHeroes: [ "id_toto", "id_tata"], idTeam: "id_team"}
-   let response = await axios.put('/heroes/update', heroesToAdd ,{headers : "teams's secret here" })
+   let response = await myaxios.put('/heroes/update', heroesToAdd ,{headers : "teams's secret here" })
    if (response.error != 0) {
       result.error=1 
       result.data=response.error

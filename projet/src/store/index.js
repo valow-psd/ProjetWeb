@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from "@/router";
+import {createTeams} from '@/service/teams.service.js';
 
 
 Vue.use(Vuex)
@@ -39,6 +40,9 @@ export default new Vuex.Store({
         },
         setListeHero(state, listeHero) {
             state.listeHero = listeHero
+        },
+        createTeam(state, equipe){
+            state.listeEquipe.push(equipe)
         }
     },
     actions: {
@@ -59,20 +63,13 @@ export default new Vuex.Store({
                 })
                 .catch(error => console.log('Error:', error))
         },
-        registerTeam({commit}, team) {
-            this.state = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/teams/create', {
-                method: 'POST', headers: {
-                    'Content-Type': 'application/json'
-                }, body: JSON.stringify({
-                        name: team.teamName
-                    }
-                )
-            })
-                .then(response => response.json())
-                .then(response => {
-                    commit('setMdpOrga', response.data)
-                })
-                .catch(error => console.log('Error:', error))
+        async registerTeam({commit}, team) {
+            try {
+                const nouvelleEquipe = await createTeams(team);
+                commit('createTeam', nouvelleEquipe.data.data)
+            }catch(error) {
+                console.error(error);
+            }
         },
         registerHero({commit}, mdpOrga) {
             fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
