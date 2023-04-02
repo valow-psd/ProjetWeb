@@ -7,7 +7,7 @@
     </v-app-bar>
     <br>
     <v-btn variant="tonal" @click=" display_button = !display_button">
-      Ajouter une nouvelle orga
+      Ajouter une nouvelle organisation
     </v-btn>
     <br>
     <v-form @submit.prevent="registerOrga" v-if=display_button>
@@ -33,7 +33,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="ele in getListeOrga" :key="ele.id">
+        <tr v-for="ele in listeOrga" :key="ele.id">
           <td>{{ ele.name }}</td>
         </tr>
         </tbody>
@@ -95,7 +95,7 @@ export default {
   name: 'OrganisationComponents',
   data: () => ({
     phrase_secrete: "",
-    columns:["name"] ,
+    columns:["Nom organisations"] ,
     display_button : false ,
     items: {},
     orgName: "",
@@ -107,7 +107,7 @@ export default {
     ]
   }),
   methods: {
-    ...mapActions(["registerOrga"]),
+    ...mapActions(["getListeOrga","registerOrga"]),
     async registerNouvelleOrga(){
       const org = {
         name: this.orgName,
@@ -117,14 +117,11 @@ export default {
     }
   },
   computed: {
-    getListeOrga() {
-      return this.$store.state.listeOrga
-    },
-    ...mapState(["orgs"]),
+    ...mapState(["listeOrga"]),
   },
   mounted() {
-    this.$store.dispatch("getListeOrga")
-    //console.log(this.nomOrga , "totot")
+    this.getListeOrga();
+    console.log("test liste orga : " + this.listeOrga);
   }
 
 

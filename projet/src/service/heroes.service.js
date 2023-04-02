@@ -14,6 +14,6 @@ export const getHeroById = (idHero) => {
 }
 
 export const getHeroAliases = () => {
-   return myaxios.get("hero/getaliases");
+   return myaxios.get("heroes/getaliases");
 }
 

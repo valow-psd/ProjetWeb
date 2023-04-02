@@ -19,24 +19,23 @@
       ></v-text-field>
       <v-btn value="name" block class="mt-2" @click="creeNouvelleEquipe">Créer nouvelle équipe</v-btn>
     </v-form>
-
     <br>
-
     <table>
       <thead>
-        <tr>
-          <th v-for="(item, index) in columns" :key="index">
-            {{ item }}
-          </th>
-        </tr>
+      <tr>
+        <th v-for="(item, index) in columns" :key="index">
+          {{ item }}
+        </th>
+      </tr>
       </thead>
       <tbody>
-        <tr v-for="ele in getListeEquipe" :key="ele.id">
-          <td>{{ ele.name }}</td>
-          <td>{{ ele.nbAffiliations}}</td>
-        </tr>
+      <tr v-for="ele in listeEquipe" :key="ele.id">
+        <td>{{ ele.name }}</td>
+        <td>{{ ele.nbAffiliations }}</td>
+      </tr>
       </tbody>
     </table>
+
   </v-container>
 </template>
 <style>
@@ -80,31 +79,30 @@ th.active .arrow {
   opacity: 1;
 }
 
-table{
+table {
   margin-left: 100px;
   width: 80%;
 }
 
 
-
 </style>
 <script>
 
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: 'TeamsComponents',
   data: () => ({
-    columns: ["name", "nom d'affiliation"],
+    columns: ["Nom", "Nombre d'affiliation"],
     items: {},
     teamName: "",
-    display_button : false ,
+    display_button: false,
     teamNameRules: [
       v => !!v || "Un nom d'équipe est requis",
     ],
   }),
   methods: {
-    ...mapActions(["registerTeam"]),
+    ...mapActions(["getListeEquipe", "registerTeam"]),
     async creeNouvelleEquipe() {
       const team = {
         name: this.teamName,
@@ -114,16 +112,12 @@ export default {
     }
   },
   computed: {
-    getListeEquipe() {
-      return this.$store.state.listeEquipe
-    },
+    ...mapState(["listeEquipe"])
   },
   mounted() {
-    this.$store.dispatch("getListeEquipe")
-    //console.log(this.nomOrga , "totot")
+    this.getListeEquipe();
+    console.log("testTeams" + this.listeEquipe);
   }
-
-
 }
 
 </script>

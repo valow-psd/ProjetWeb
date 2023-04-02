@@ -35,7 +35,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="ele in getListeHeroes" :key="ele.id">
+      <tr v-for="ele in listeHeroes" :key="ele.id">
         <td>{{ ele.publicName }}</td>
       </tr>
       </tbody>
@@ -91,7 +91,7 @@ table {
 
 <script>
 
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: 'HeroesComponents',
@@ -108,7 +108,7 @@ export default {
       v => !!v || "Un nom réel de héro est requis",
     ],
   }),methods: {
-    ...mapActions(["registerHero"]),
+    ...mapActions(["getListeHero","registerHero"]),
     async creeNouveauHero() {
       const hero = {
         publicName: this.heroPublicName,
@@ -120,13 +120,11 @@ export default {
   },
 
   computed: {
-    getListeHeroes() {
-      return this.$store.state.listeHeroes
-    },
+    ...mapState(["listeHeroes"])
   },
   mounted() {
-    this.$store.dispatch("getListeHero")
-    //console.log(this.nomOrga , "totot")
+    this.getListeHero();
+    console.log("test liste heros : " + this.listeHeroes)
   }
 
 

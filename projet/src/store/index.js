@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {createTeams} from '@/service/teams.service.js';
-import {createOrganisation} from '@/service/organisations.service.js';
-import {createHero} from "@/service/heroes.service";
-import errorModule from './modules/errorModule';
-import authModule from './modules/authModule';
+import {createTeams, getTeams} from '@/service/teams.service.js';
+import {createOrganisation, getOrganisation} from '@/service/organisations.service.js';
+import {createHero, getHeroAliases} from "@/service/heroes.service";
+import errorModule from './errorModule';
+import authModule from './authModule';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
         mdpOrga: null,
-        listeHeroes: null,
+        listeHeroes: [],
         currentHero: null,
-        listeEquipe: null,
+        listeEquipe: [],
         currentEquipe: null,
-        listeOrga: null,
+        listeOrga: [],
         currentOrga: null
     },
     mutations: {
@@ -23,7 +23,6 @@ export default new Vuex.Store({
             state.mdpOrga = mdpOrga
         },
         setListeHeroes(state, listeHeroes) {
-            console.log("oui")
             state.listeHeroes = listeHeroes
         },
         setCurrentHero(state, currentHero) {
@@ -48,7 +47,7 @@ export default new Vuex.Store({
             state.listeOrga.push(org);
         },
         createHero(state, hero){
-            state.listeHero.push(hero);
+            state.listeHeroes.push(hero);
         }
     },
     actions: {
@@ -57,7 +56,7 @@ export default new Vuex.Store({
                 const org = await createOrganisation({name, secret});
                 commit("createOrg", org)
             }catch (error) {
-                console.error(error);
+                console.log('Error:', error)
             }
         },
         async registerTeam({commit}, team) {
@@ -65,7 +64,7 @@ export default new Vuex.Store({
                 const nouvelleEquipe = await createTeams(team);
                 commit('createTeam', nouvelleEquipe.data.data);
             }catch(error) {
-                console.error(error);
+                console.log('Error:', error)
             }
         },
         async registerHero({commit}, {publicName, realName}) {
@@ -73,21 +72,17 @@ export default new Vuex.Store({
                 const hero = await createHero({publicName, realName});
                 commit("createHero", hero);
             }catch (error){
-                console.error(error);
+                console.log('Error:', error)
             }
         },
 
-        async getListeHero({commit}, alias) {
-            return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/heroes/getaliases', {
-                method: 'GET', headers: {
-                    'Content-Type': 'application/json'
-                }, body: JSON.stringify(alias)
-            })
-                .then(response => response.json())
-                .then(response => {
-                    commit('setListeHeroes', response.data)
-                })
-                .catch(error => console.log('Error:', error))
+        async getListeHero({commit}){
+            try{
+                const listeHeroes = await getHeroAliases();
+                commit("setListeHeroes", listeHeroes.data.data);
+            }catch(error) {
+                console.log('Error:', error);
+            }
         },
 
         getCurrentHero({commit}, currentHero) {
@@ -101,7 +96,8 @@ export default new Vuex.Store({
                     commit('setCurrentHero', response.data)
                 })
                 .catch(error => console.log('Error:', error))
-        }, updateCurrentHero({commit}, currentHero) {
+        },
+        updateCurrentHero({commit}, currentHero) {
             return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json'
@@ -112,18 +108,16 @@ export default new Vuex.Store({
                     commit('setCurrentHero', response.data)
                 })
                 .catch(error => console.log('Error:', error))
-        }, getListeEquipe({commit}, listeEquipe) {
-            return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/teams/get', {
-                method: 'GET', headers: {
-                    'Content-Type': 'application/json'
-                }, body: JSON.stringify(listeEquipe)
-            })
-                .then(response => response.json())
-                .then(response => {
-                    commit('setListeEquipe', response.data)
-                })
-                .catch(error => console.log('Error:', error))
-        }, getCurrentEquipe({commit}, currentEquipe) {
+        },
+        async getListeEquipe({commit}){
+            try{
+                const listeEquipe = await getTeams();
+                commit("setListeEquipe", listeEquipe.data.data);
+            }catch(error) {
+                console.log('Error:', error);
+            }
+        },
+        getCurrentEquipe({commit}, currentEquipe) {
             return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
                 method: 'GET', headers: {
                     'Content-Type': 'application/json'
@@ -134,7 +128,8 @@ export default new Vuex.Store({
                     commit('setCurrentEquipe', response.data)
                 })
                 .catch(error => console.log('Error:', error))
-        }, updateCurrentTeam({commit}, currentEquipe) {
+        },
+        updateCurrentTeam({commit}, currentEquipe) {
             return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json'
@@ -145,18 +140,16 @@ export default new Vuex.Store({
                     commit('setCurrentEquipe', response.data)
                 })
                 .catch(error => console.log('Error:', error))
-        }, getListeOrga({commit}, nomOrga) {
-            this.state.nomOrga = fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/get', {
-                method: 'GET', headers: {
-                    'Content-Type': 'application/json'
-                }, body: JSON.stringify(nomOrga)
-            })
-                .then(response => response.json())
-                .then(response => {
-                    commit('setListeOrga', response.data)
-                })
-                .catch(error => console.log('Error:', error))
-        }, getCurrentOrga({commit}, currentOrga) {
+        },
+        async getListeOrga({commit}){
+            try{
+                const listeOrga = await getOrganisation();
+                commit("setListeOrga", listeOrga.data.data);
+            }catch (error){
+                console.log('Error:', error);
+            }
+        },
+        getCurrentOrga({commit}, currentOrga) {
             return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
                 method: 'GET', headers: {
                     'Content-Type': 'application/json'
@@ -167,7 +160,8 @@ export default new Vuex.Store({
                     commit('setCurrentOrga', response.data)
                 })
                 .catch(error => console.log('Error:', error))
-        }, updateCurrentOrga({commit}, currentOrga) {
+        },
+        updateCurrentOrga({commit}, currentOrga) {
             return fetch('https://apidemo.iut-bm.univ-fcomte.fr/herocorp/orgs/getbyid/63bfe549458c2ed0e63ac4f7?org-secret=nous%20sommes%20mechants', {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json'
