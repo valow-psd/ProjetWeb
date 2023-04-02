@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import {createTeams} from '@/service/teams.service.js';
 import {createOrganisation} from '@/service/organisations.service.js';
 import {createHero} from "@/service/heroes.service";
+import errorModule from './modules/errorModule';
+import authModule from './modules/authModule';
 
 Vue.use(Vuex)
 
@@ -187,5 +189,8 @@ export default new Vuex.Store({
         getListeOrga: state => state.listeOrga,
         getCurrentOrga: state => state.currentOrga
 
+    }, modules: {
+        errorModule,
+        authModule
     }
 })

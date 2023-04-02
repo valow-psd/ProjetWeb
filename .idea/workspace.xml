@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a4e6756-099c-4849-a5e1-23b794da2275" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/projet/src/store/authModule.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projet/src/store/errorModule.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projet/node_modules/.cache/eslint/e6cee0d8.json" beforeDir="false" afterPath="$PROJECT_DIR$/projet/node_modules/.cache/eslint/e6cee0d8.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projet/src/components/HeroesComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/components/HeroesComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projet/src/components/OrganisationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/components/OrganisationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projet/src/components/TeamsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/components/TeamsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projet/src/service/heroes.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/service/heroes.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projet/src/service/organisations.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/service/organisations.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projet/src/service/teams.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/service/teams.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projet/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/projet/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -68,7 +64,8 @@
       <workItem from="1680287903847" duration="214000" />
       <workItem from="1680288128356" duration="4965000" />
       <workItem from="1680331856530" duration="17803000" />
-      <workItem from="1680363146451" duration="4683000" />
+      <workItem from="1680363146451" duration="5062000" />
+      <workItem from="1680420621877" duration="1341000" />
     </task>
     <servers />
   </component>
